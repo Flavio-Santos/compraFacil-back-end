@@ -1,5 +1,6 @@
 package com.compraFacil.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +15,9 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Produto {
-
+public class Produto implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
@@ -34,12 +36,13 @@ public class Produto {
 	public Produto() {
 		
 	}
-	public Produto(Integer id, Double valor, String nome, String descricao) {
+	public Produto(Integer id, Double valor, String nome, String descricao, Categoria categoria) {
 		super();
 		this.id = id;
 		this.valor = valor;
 		this.nome = nome;
 		this.descricao = descricao;
+		this.categoria = categoria;
 	}
 	
 	public Integer getId() {
@@ -66,6 +69,12 @@ public class Produto {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 	
 	@Override
 	public int hashCode() {
@@ -89,12 +98,6 @@ public class Produto {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-	public Categoria getCategoria() {
-		return categoria;
-	}
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
 	}
 	
 	
