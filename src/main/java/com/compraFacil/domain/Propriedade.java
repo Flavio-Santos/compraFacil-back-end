@@ -4,24 +4,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Tipo {
+public class Propriedade {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	
-	public Tipo () {
+	@ManyToOne
+	@JoinColumn(name="produto_id")
+	private Produto produto;
+	
+	public Propriedade(){
 		
 	}
-	public Tipo(Integer id, String nome) {
+	public Propriedade(Integer id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
 	}
-	
 	public Integer getId() {
 		return id;
 	}
@@ -33,6 +38,12 @@ public class Tipo {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public Produto getProduto() {
+		return produto;
+	}
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 	
 	

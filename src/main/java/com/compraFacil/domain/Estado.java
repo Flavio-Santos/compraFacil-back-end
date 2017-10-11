@@ -68,6 +68,12 @@ public class Estado {
 			return false;
 		return true;
 	}
+	public List<Cidade> getCidades() {
+		return cidades;
+	}
+	public void setCidades(List<Cidade> cidades) {
+		this.cidades = cidades;
+	}
 	
 	
 }
