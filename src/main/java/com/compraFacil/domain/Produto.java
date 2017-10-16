@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -24,12 +25,11 @@ public class Produto implements Serializable{
 	private Double valor;
 	private String nome;
 	private String descricao;
-	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="categoria_id")
 	private Categoria categoria;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy="produto")
 	private List<Propriedade> propriedades = new ArrayList<>();
 	
