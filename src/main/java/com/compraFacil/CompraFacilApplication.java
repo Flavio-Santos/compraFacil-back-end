@@ -31,11 +31,17 @@ public class CompraFacilApplication implements CommandLineRunner{
 	public void run(String... arg0) throws Exception {
 		Categoria cat1 = new Categoria(null, "Veiculo");
 		Categoria cat2 = new Categoria(null, "Musica");
+		Categoria cat3 = new Categoria(null, "Eletronicos");
+		Categoria cat4 = new Categoria(null, "Musica");
+		Categoria cat5 = new Categoria(null, "Musica");
 		
-		categoriaRepository.save(Arrays.asList(cat1, cat2));
+		categoriaRepository.save(Arrays.asList(cat1, cat2, cat3));
 		
 		Produto prod1 = new Produto(null, 249.0, "Bicleta azul", "vendo bicicleta show", cat1);
-		produtoRepository.save(Arrays.asList(prod1));
+		Produto prod2 = new Produto(null, 249.0, "TV LED 40", "TV de 40 polegadas", cat3);
+		Produto prod3 = new Produto(null, 249.0, "Violão Gianini", "Violão seminovo", cat2);
+		
+		produtoRepository.save(Arrays.asList(prod1, prod2, prod3));
 	
 	}
 }
