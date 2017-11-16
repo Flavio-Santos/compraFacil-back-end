@@ -13,15 +13,17 @@ public class ProdutoDTO implements Serializable {
 	private String nome;
 	private Double valor;
 	private String descricao;
+	private CategoriaDTO categoria;
 	
 	public ProdutoDTO() {
 	}
 
-	public ProdutoDTO(Produto obj) {
-		id = obj.getId();
-		nome = obj.getNome();
-		valor = obj.getValor();
-		descricao = obj.getDescricao();
+	public ProdutoDTO(Produto obj, CategoriaDTO cat) {
+		this.id = obj.getId();
+		this.nome = obj.getNome();
+		this.valor = obj.getValor();
+		this.descricao = obj.getDescricao();
+		this.categoria = cat;
 	}
 
 	public Integer getId() {
@@ -55,4 +57,15 @@ public class ProdutoDTO implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
+	public CategoriaDTO getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaDTO categoria) {
+		this.categoria = categoria;
+	}
+
+
+
 }

@@ -40,8 +40,10 @@ public class CompraFacilApplication implements CommandLineRunner{
 		Produto prod1 = new Produto(null, 249.0, "Bicleta azul", "vendo bicicleta show", cat1);
 		Produto prod2 = new Produto(null, 249.0, "TV LED 40", "TV de 40 polegadas", cat3);
 		Produto prod3 = new Produto(null, 249.0, "Violão Gianini", "Violão seminovo", cat2);
+		Produto prod4 = new Produto(null, 249.0, "iPhone 5s", "", cat3);
+		Produto prod5 = new Produto(null, 249.0, "Amplificador Orange 20w valvulado", "Apenas 3 meses de uso, e vai com a caixa", cat2);
 		
-		produtoRepository.save(Arrays.asList(prod1, prod2, prod3));
+		produtoRepository.save(Arrays.asList(prod1, prod2, prod3, prod4, prod5));
 	
 	}
 }

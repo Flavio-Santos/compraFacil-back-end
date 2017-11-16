@@ -2,6 +2,7 @@ package com.compraFacil.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.compraFacil.domain.Categoria;
+import com.compraFacil.domain.Produto;
+import com.compraFacil.dto.CategoriaDTO;
+import com.compraFacil.dto.ProdutoDTO;
 import com.compraFacil.services.CategoriaService;
 
 @RestController
@@ -43,6 +47,11 @@ public class CategoriaResource {
 		//return ResponseEntity.ok().body(listDTO);
 	//}
 	
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<Categoria>> findAll(){	
+		List<Categoria> list = service.findAll();
+		return ResponseEntity.ok().body(list);
+	}
 	
 	
 }

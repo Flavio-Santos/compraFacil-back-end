@@ -10,9 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 
 @Entity
 public class Categoria implements Serializable{
@@ -23,7 +20,6 @@ public class Categoria implements Serializable{
 	private Integer id;
 	private String nome;
 	
-	@JsonManagedReference
 	@OneToMany(mappedBy="categoria")
 	private List<Produto> produtos = new ArrayList<>();
 	
