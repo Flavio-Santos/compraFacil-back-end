@@ -1,6 +1,7 @@
 package com.compraFacil.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,36 +12,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.compraFacil.domain.Categoria;
-import com.compraFacil.services.CategoriaService;
+import com.compraFacil.domain.Venda;
+import com.compraFacil.services.VendaService;
 
 @RestController
-@RequestMapping(value="/categorias")
-public class CategoriaResource {
+@RequestMapping(value="/vendas")
+public class VendaResource {
 	
 	@Autowired
-	private CategoriaService service;
+	private VendaService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Categoria> buscar(@PathVariable Integer id) {	
-		Categoria cat = service.buscar(id);
-		return ResponseEntity.ok().body(cat);
+	public ResponseEntity<List<Venda>> buscarPorVendedor(@PathVariable Integer id) {	
+		 List<Venda> vendas = service.buscar(id);
+		return ResponseEntity.ok().body(vendas);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<?> buscar(@RequestBody Categoria cat) {	
-		cat = service.insert(cat);
+	public ResponseEntity<?> insert(@RequestBody Venda venda) {	
+		venda = service.insert(venda);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand( cat.getId() ).toUri();
+				.path("/{id}").buildAndExpand( venda.getId() ).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-	
-	//@RequestMapping(method=RequestMethod.GET)
-	//public ResponseEntity<List<Categoria>> buscarTodos() {
-	//	List<Categoria> list = service.findAll();
-		//]List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
-		//return ResponseEntity.ok().body(listDTO);
-	//}
 	
 	
 	
