@@ -1,9 +1,24 @@
 package com.compraFacil.domain;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.compraFacil.domain.enums.Perfil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Usuario {
@@ -11,24 +26,39 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column(unique=true)
 	private String nome;
 	private String email;
-	private String login;
+	private String cpfOuCnpj;
+
+	@JsonIgnore
 	private String senha;
-	private Integer tipo;
+	
+	@OneToMany(mappedBy="usuario", cascade=CascadeType.ALL)
+	private List<Endereco> enderecos = new ArrayList<>();
+	
+	@ElementCollection
+	@CollectionTable(name="TELEFONE" )
+	private Set<String> telefones = new HashSet<>();
+	
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="PERFIS")
+	private Set<Integer> perfis = new HashSet<>();
 
 	public Usuario() {
-
+		addPerfil(Perfil.USUARIO);
 	}
 
-	public Usuario(Integer id, String nome, String email, String login, String senha, Integer tipo) {
+	public Usuario(Integer id, String nome, String email, String cpfOuCnpj, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		this.login = login;
+		this.cpfOuCnpj = cpfOuCnpj;
 		this.senha = senha;
-		this.tipo = tipo;
+		addPerfil(Perfil.USUARIO);
+
 	}
 
 	public Integer getId() {
@@ -55,14 +85,13 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getCpfOuCnpj() {
+		return cpfOuCnpj;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setCpfOuCnpj(String cpfOuCnpj) {
+		this.cpfOuCnpj = cpfOuCnpj;
 	}
-
 	public String getSenha() {
 		return senha;
 	}
@@ -70,13 +99,26 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-	public Integer getTipo() {
-		return tipo;
+	public Set<Perfil> getPerfis(){
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+	public void addPerfil(Perfil perfil) {
+		perfis.add(perfil.getCod());
+	}
+	public List<Endereco> getEnderecos() {
+		return enderecos;
 	}
 
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
+
+	public Set<String> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(Set<String> telefones) {
+		this.telefones = telefones;
 	}
 
 	@Override
@@ -103,6 +145,6 @@ public class Usuario {
 			return false;
 		return true;
 	}
-
 	
 }
+	
