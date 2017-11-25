@@ -15,20 +15,18 @@ public class Usuario {
 	private String email;
 	private String login;
 	private String senha;
-	private Integer tipo;
 
 	public Usuario() {
 
 	}
 
-	public Usuario(Integer id, String nome, String email, String login, String senha, Integer tipo) {
+	public Usuario(Integer id, String nome, String email, String login, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.login = login;
 		this.senha = senha;
-		this.tipo = tipo;
 	}
 
 	public Integer getId() {
@@ -71,14 +69,6 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public Integer getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -103,6 +93,7 @@ public class Usuario {
 			return false;
 		return true;
 	}
-
 	
 }
+
+	
