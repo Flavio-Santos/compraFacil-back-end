@@ -27,6 +27,10 @@ public class ProdutoService {
 		
 	}
 	
+	public List<Produto> findAll() {
+		return repoProduto.findAll();
+	}
+	
 	public List<Produto> buscarPorCategoria(Integer id) {
 		List<Produto> prod = repoProduto.findAll();
 		List<Produto> prodCat = new ArrayList<Produto>();

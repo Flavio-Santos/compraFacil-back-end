@@ -1,9 +1,12 @@
 package com.compraFacil.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.compraFacil.domain.Categoria;
+import com.compraFacil.domain.Produto;
 import com.compraFacil.repositories.CategoriaRepository;
 import com.compraFacil.services.exceptions.ObjectNotFoundException;
 
@@ -22,6 +25,10 @@ public class CategoriaService {
 			return obj;
 		}
 		
+	}
+	
+	public List<Categoria> findAll() {
+		return repoCategoria.findAll();
 	}
 
 	public Categoria insert(Categoria cat) {
