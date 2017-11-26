@@ -7,7 +7,9 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.compraFacil.domain.Usuario;
+import com.compraFacil.services.validation.UsuarioUpdate;
 
+@UsuarioUpdate
 public class UsuarioDTO implements Serializable{
 		private static final long serialVersionUID = 1L;
 		
