@@ -6,20 +6,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.compraFacil.domain.Categoria;
 import com.compraFacil.domain.Cidade;
 import com.compraFacil.domain.Endereco;
 import com.compraFacil.domain.Estado;
+import com.compraFacil.domain.Localizacao;
+import com.compraFacil.domain.Produto;
 import com.compraFacil.domain.Usuario;
 import com.compraFacil.domain.enums.Perfil;
+import com.compraFacil.repositories.CategoriaRepository;
 import com.compraFacil.repositories.CidadeRepository;
 import com.compraFacil.repositories.EnderecoRepository;
 import com.compraFacil.repositories.EstadoRepository;
+import com.compraFacil.repositories.LocalizacaoRepository;
+import com.compraFacil.repositories.ProdutoRepository;
 import com.compraFacil.repositories.UsuarioRepository;
 
 
 @Service
 public class TesteService {
 
+	@Autowired
+	private CategoriaRepository categoriaRepository;
+	@Autowired
+	private ProdutoRepository produtoRepository;
+	@Autowired
+	private LocalizacaoRepository localizacaoRepository;
 	@Autowired	
 	private EstadoRepository estadoRepository;
 	@Autowired	
@@ -32,6 +44,29 @@ public class TesteService {
 	private BCryptPasswordEncoder pe;
 	
 	public void instantiateTestDatabase() {
+		
+		Categoria cat1 = new Categoria(null, "Veiculo");
+		Categoria cat2 = new Categoria(null, "Musica");
+		Categoria cat3 = new Categoria(null, "Eletronicos");
+		
+		
+		categoriaRepository.save(Arrays.asList(cat1, cat2, cat3));
+		
+		Produto prod1 = new Produto(null, 249.0, "Bicleta azul", "vendo bicicleta show", cat1);
+
+		produtoRepository.save(Arrays.asList(prod1));
+		
+		Localizacao loc1 = new Localizacao(null, "-13151351", "-12132132132", "Em frente ao Mc Donalds");
+		Localizacao loc2 = new Localizacao(null, "-48648648", "-6845684684", "Em frente ao Burguer King");
+		
+		localizacaoRepository.save(Arrays.asList(loc1, loc2));
+		
+		Produto prod2 = new Produto(null, 249.0, "TV LED 40", "TV de 40 polegadas", cat3);
+		Produto prod3 = new Produto(null, 249.0, "Violão Gianini", "Violão seminovo", cat2);
+		Produto prod4 = new Produto(null, 249.0, "iPhone 5s", "", cat3);
+		Produto prod5 = new Produto(null, 249.0, "Amplificador Orange 20w valvulado", "Apenas 3 meses de uso, e vai com a caixa", cat2);
+		
+		produtoRepository.save(Arrays.asList(prod1, prod2, prod3, prod4, prod5));
 		
 		Estado est1 = new Estado(null, "Minas Gerais");
 		Estado est2 = new Estado(null, "São Paulo");
@@ -46,10 +81,10 @@ public class TesteService {
 		estadoRepository.save(Arrays.asList(est1, est2));
 		cidadeRepository.save(Arrays.asList(c1, c2, c3));
 		
-		Usuario usr1 = new Usuario(null, "Maria Silva", "rafaell.oliveira001@gmail.com", "36378912377", pe.encode("123"));
+		Usuario usr1 = new Usuario(null, "santana", "santana@hotmail.com", "36378912377", pe.encode("afafoo"));
 		usr1.getTelefones().addAll(Arrays.asList("27363323", "88456521"));
 		
-		Usuario usr2 = new Usuario(null, "Mlk Admin", "ralvesprojetos@gmail.com", "53243491193", pe.encode("123"));
+		Usuario usr2 = new Usuario(null, "flavio", "asdasd@gmail.com", "53243491193", pe.encode("opop777"));
 		usr2.getTelefones().addAll(Arrays.asList("32992288", "923723423"));
 		usr2.addPerfil(Perfil.ADMIN);
 		
@@ -66,3 +101,4 @@ public class TesteService {
 
 	}
 }
+
