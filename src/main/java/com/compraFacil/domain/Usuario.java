@@ -21,14 +21,13 @@ public class Usuario {
 
 	}
 
-	public Usuario(Integer id, String nome, String email, String login, String senha, Integer tipo) {
+	public Usuario(Integer id, String nome, String email, String login, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.login = login;
 		this.senha = senha;
-		this.tipo = tipo;
 	}
 
 	public Integer getId() {
