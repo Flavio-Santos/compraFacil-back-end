@@ -2,6 +2,8 @@ package com.compraFacil.resources;
 
 import java.net.URI;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,13 +37,11 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	//@RequestMapping(method=RequestMethod.GET)
-	//public ResponseEntity<List<Categoria>> buscarTodos() {
-	//	List<Categoria> list = service.findAll();
-		//]List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
-		//return ResponseEntity.ok().body(listDTO);
-	//}
-	
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<Categoria>> findAll(){	
+		List<Categoria> list = service.findAll();
+		return ResponseEntity.ok().body(list);
+	}
 	
 	
 }

@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Produto implements Serializable{
@@ -24,7 +25,8 @@ public class Produto implements Serializable{
 	private Double valor;
 	private String nome;
 	private String descricao;
-	@JsonBackReference
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="categoria_id")
 	private Categoria categoria;
