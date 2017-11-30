@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.compraFacil.domain.Categoria;
-import com.compraFacil.domain.Produto;
 import com.compraFacil.repositories.CategoriaRepository;
 import com.compraFacil.services.exceptions.ObjectNotFoundException;
 

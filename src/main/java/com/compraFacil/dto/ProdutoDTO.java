@@ -13,6 +13,15 @@ public class ProdutoDTO implements Serializable {
 	private String nome;
 	private Double valor;
 	private String descricao;
+	private String imagem;
+	public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
+
 	private CategoriaDTO categoria;
 	
 	public ProdutoDTO() {
@@ -24,6 +33,7 @@ public class ProdutoDTO implements Serializable {
 		this.valor = obj.getValor();
 		this.descricao = obj.getDescricao();
 		this.categoria = cat;
+		this.imagem = obj.getImagem();
 	}
 
 	public Integer getId() {

@@ -1,5 +1,6 @@
 package com.compraFacil.security;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -14,8 +15,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.compraFacil.dto.CredenciaisDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.compraFacil.dto.CredenciaisDTO;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 

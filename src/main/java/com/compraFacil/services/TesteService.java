@@ -52,21 +52,23 @@ public class TesteService {
 		
 		categoriaRepository.save(Arrays.asList(cat1, cat2, cat3));
 		
-		Produto prod1 = new Produto(null, 249.0, "Bicleta azul", "vendo bicicleta show", cat1);
-
-		produtoRepository.save(Arrays.asList(prod1));
-		
 		Localizacao loc1 = new Localizacao(null, "-13151351", "-12132132132", "Em frente ao Mc Donalds");
 		Localizacao loc2 = new Localizacao(null, "-48648648", "-6845684684", "Em frente ao Burguer King");
 		
 		localizacaoRepository.save(Arrays.asList(loc1, loc2));
 		
-		Produto prod2 = new Produto(null, 249.0, "TV LED 40", "TV de 40 polegadas", cat3);
-		Produto prod3 = new Produto(null, 249.0, "Violão Gianini", "Violão seminovo", cat2);
-		Produto prod4 = new Produto(null, 249.0, "iPhone 5s", "", cat3);
-		Produto prod5 = new Produto(null, 249.0, "Amplificador Orange 20w valvulado", "Apenas 3 meses de uso, e vai com a caixa", cat2);
+		String link = "http://img0.icarros.com/dbimg/imgmodelo/4/1702_3.png";
 		
-		produtoRepository.save(Arrays.asList(prod1, prod2, prod3, prod4, prod5));
+		String link2 = "https://fichatecnica.motosblog.com.br/fotos/cache_30bf74d4f35848c20bd64079c5978792_907.jpg";
+		
+		
+		
+		
+		Produto prod0 = new Produto(null, 7530.0, "CG", "125cc", cat1, link);
+		Produto prod1 = new Produto(null, 249.0, "Bicleta azul", "vendo bicicleta show", cat1, link2);
+		
+		
+		produtoRepository.save(Arrays.asList(prod0, prod1));
 		
 		Estado est1 = new Estado(null, "Minas Gerais");
 		Estado est2 = new Estado(null, "São Paulo");

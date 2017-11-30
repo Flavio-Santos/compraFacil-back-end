@@ -24,7 +24,7 @@ import com.compraFacil.dto.UsuarioNewDTO;
 import com.compraFacil.services.UsuarioService;
 
 @RestController
-@RequestMapping(value="/clientes")
+@RequestMapping(value="/usuarios")
 public class UsuarioResource {
 	@Autowired
 	private UsuarioService service;

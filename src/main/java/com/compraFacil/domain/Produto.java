@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -25,6 +24,7 @@ public class Produto implements Serializable{
 	private Double valor;
 	private String nome;
 	private String descricao;
+	private String imagem;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -37,15 +37,30 @@ public class Produto implements Serializable{
 	public Produto() {
 		
 	}
-	public Produto(Integer id, Double valor, String nome, String descricao, Categoria categoria) {
+	
+	
+	public Produto(Integer id, Double valor, String nome, String descricao, Categoria categoria, String imagem) {
 		super();
 		this.id = id;
 		this.valor = valor;
 		this.nome = nome;
 		this.descricao = descricao;
+		this.imagem = imagem;
 		this.categoria = categoria;
 	}
+
+
 	
+	public String getImagem() {
+		return imagem;
+	}
+
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
+
+
 	public Integer getId() {
 		return id;
 	}
