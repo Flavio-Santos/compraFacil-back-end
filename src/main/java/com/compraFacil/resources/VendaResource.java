@@ -16,26 +16,23 @@ import com.compraFacil.domain.Venda;
 import com.compraFacil.services.VendaService;
 
 @RestController
-@RequestMapping(value="/vendas")
+@RequestMapping(value = "/vendas")
 public class VendaResource {
-	
+
 	@Autowired
 	private VendaService service;
-	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<Venda>> buscarPorVendedor(@PathVariable Integer id) {	
-		 List<Venda> vendas = service.buscar(id);
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<Venda>> buscarPorVendedor(@PathVariable Integer id) {
+		List<Venda> vendas = service.buscar(id);
 		return ResponseEntity.ok().body(vendas);
 	}
-	
-	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<?> insert(@RequestBody Venda venda) {	
+
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<?> insert(@RequestBody Venda venda) {
 		venda = service.insert(venda);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand( venda.getId() ).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(venda.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-	
-	
-	
+
 }
