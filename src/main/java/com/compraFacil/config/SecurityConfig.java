@@ -43,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	};
 
 	private static final String[] PUBLIC_MATCHERS_GET = {
+			"/produtos/**"
 	};
 	
 	private static final String[] PUBLIC_MATCHERS_POST = {
@@ -50,11 +51,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			
 	};
 
-	@Bean
-	public UserDetailsService userDetailsService() {
-	    return super.userDetailsService();
-	}
-	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		

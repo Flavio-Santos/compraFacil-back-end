@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Produto implements Serializable{
@@ -24,6 +23,7 @@ public class Produto implements Serializable{
 	private Integer id;
 	private Double valor;
 	private String nome;
+	private String imagem;
 	private String descricao;
 	@JsonBackReference
 	@ManyToOne
@@ -36,15 +36,19 @@ public class Produto implements Serializable{
 	public Produto() {
 		
 	}
-	public Produto(Integer id, Double valor, String nome, String descricao, Categoria categoria) {
+	
+	
+	public Produto(Integer id, Double valor, String nome, String imagem, String descricao, Categoria categoria) {
 		super();
 		this.id = id;
 		this.valor = valor;
 		this.nome = nome;
+		this.imagem = imagem;
 		this.descricao = descricao;
 		this.categoria = categoria;
 	}
-	
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -63,6 +67,17 @@ public class Produto implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public String getImagem() {
+		return imagem;
+	}
+
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
+
+
 	public String getDescricao() {
 		return descricao;
 	}
