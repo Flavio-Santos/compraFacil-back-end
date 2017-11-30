@@ -37,11 +37,11 @@ public class UsuarioService {
 	private EnderecoRepository enderecoRepository;
 	
 	public Usuario find(Integer id) {
-		/*
+		
 		UserSS user = UserService.authenticated();
 		if(user == null||!user.hasRole(Perfil.ADMIN)&&id.equals(user.getId())) {
 			throw new  AuthorizationException("Acesso Negado");
-		}*/
+		}
 		
 		Usuario obj = repo.findOne(id);
 		
@@ -49,8 +49,6 @@ public class UsuarioService {
 			throw new ObjectNotFoundException("Objeto não encontrado id:"+ id +", "
 					+ "tipo: " + Usuario.class.getName());
 		}
-		
-		
 		
 		return obj;
 	}

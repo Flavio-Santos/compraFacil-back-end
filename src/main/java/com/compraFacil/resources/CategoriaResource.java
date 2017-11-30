@@ -1,7 +1,6 @@
 package com.compraFacil.resources;
 
 import java.net.URI;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,17 +34,6 @@ public class CategoriaResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cat.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-<<<<<<< HEAD
-	
-	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<Categoria>> findAll(){	
-		List<Categoria> list = service.findAll();
-		return ResponseEntity.ok().body(list);
-	}
-	
-	
-}
-=======
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Categoria>> findAll() {
@@ -54,4 +42,3 @@ public class CategoriaResource {
 	}
 
 }
->>>>>>> buscaPorUsuario

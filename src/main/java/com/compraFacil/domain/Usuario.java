@@ -50,9 +50,7 @@ public class Usuario {
 		addPerfil(Perfil.USUARIO);
 	}
 
-
 	public Usuario(Integer id, String nome, String email, String cpfOuCnpj, String senha) {
-
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -60,7 +58,6 @@ public class Usuario {
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.senha = senha;
 		addPerfil(Perfil.USUARIO);
-
 
 	}
 

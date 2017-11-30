@@ -26,8 +26,4 @@ public class CategoriaDTO {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> buscaPorUsuario

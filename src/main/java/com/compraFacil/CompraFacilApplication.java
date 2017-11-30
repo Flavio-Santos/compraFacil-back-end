@@ -4,10 +4,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> buscaPorUsuario
 @SpringBootApplication
 public class CompraFacilApplication implements CommandLineRunner{
 
@@ -17,9 +13,5 @@ public class CompraFacilApplication implements CommandLineRunner{
 	
 	@Override
 	public void run(String... arg0) throws Exception {
-<<<<<<< HEAD
-		
-=======
->>>>>>> buscaPorUsuario
 	}
 }

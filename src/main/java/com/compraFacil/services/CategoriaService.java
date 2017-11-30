@@ -29,10 +29,6 @@ public class CategoriaService {
 	public List<Categoria> findAll() {
 		return repoCategoria.findAll();
 	}
-	
-	public List<Categoria> findAll() {
-		return repoCategoria.findAll();
-	}
 
 	public Categoria insert(Categoria cat) {
 		cat.setId(null);

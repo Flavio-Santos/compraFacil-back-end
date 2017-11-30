@@ -31,11 +31,7 @@ public class TesteService {
 	private ProdutoRepository produtoRepository;
 	@Autowired
 	private LocalizacaoRepository localizacaoRepository;
-<<<<<<< HEAD
-	@Autowired	
-=======
 	@Autowired
->>>>>>> buscaPorUsuario
 	private EstadoRepository estadoRepository;
 	@Autowired
 	private CidadeRepository cidadeRepository;
@@ -56,30 +52,6 @@ public class TesteService {
 		Categoria cat1 = new Categoria(null, "Veiculo");
 		Categoria cat2 = new Categoria(null, "Musica");
 		Categoria cat3 = new Categoria(null, "Eletronicos");
-<<<<<<< HEAD
-		
-		
-		categoriaRepository.save(Arrays.asList(cat1, cat2, cat3));
-		
-		Localizacao loc1 = new Localizacao(null, "-13151351", "-12132132132", "Em frente ao Mc Donalds");
-		Localizacao loc2 = new Localizacao(null, "-48648648", "-6845684684", "Em frente ao Burguer King");
-		
-		localizacaoRepository.save(Arrays.asList(loc1, loc2));
-		
-		String link = "http://img0.icarros.com/dbimg/imgmodelo/4/1702_3.png";
-		
-		String link2 = "https://fichatecnica.motosblog.com.br/fotos/cache_30bf74d4f35848c20bd64079c5978792_907.jpg";
-		
-		
-		
-		
-		Produto prod0 = new Produto(null, 7530.0, "CG", "125cc", cat1, link);
-		Produto prod1 = new Produto(null, 249.0, "Bicleta azul", "vendo bicicleta show", cat1, link2);
-		
-		
-		produtoRepository.save(Arrays.asList(prod0, prod1));
-		
-=======
 
 		categoriaRepository.save(Arrays.asList(cat1, cat2, cat3));
 		
@@ -88,7 +60,6 @@ public class TesteService {
 
 		produtoRepository.save(Arrays.asList(prod1, prod2));
 
->>>>>>> buscaPorUsuario
 		Estado est1 = new Estado(null, "Minas Gerais");
 		Estado est2 = new Estado(null, "São Paulo");
 
@@ -101,17 +72,10 @@ public class TesteService {
 
 		estadoRepository.save(Arrays.asList(est1, est2));
 		cidadeRepository.save(Arrays.asList(c1, c2, c3));
-<<<<<<< HEAD
-		
-		Usuario usr1 = new Usuario(null, "santana", "santana@hotmail.com", "36378912377", pe.encode("afafoo"));
-		usr1.getTelefones().addAll(Arrays.asList("27363323", "88456521"));
-		
-=======
 
 		Usuario usr1 = new Usuario(null, "santana", "santana@hotmail.com", "36378912377", pe.encode("afafoo"));
 		usr1.getTelefones().addAll(Arrays.asList("27363323", "88456521"));
 
->>>>>>> buscaPorUsuario
 		Usuario usr2 = new Usuario(null, "flavio", "asdasd@gmail.com", "53243491193", pe.encode("opop777"));
 		usr2.getTelefones().addAll(Arrays.asList("32992288", "923723423"));
 		usr2.addPerfil(Perfil.ADMIN);
@@ -128,4 +92,3 @@ public class TesteService {
 
 	}
 }
-

@@ -39,11 +39,7 @@ public class ProdutoResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(prod.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> buscaPorUsuario
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<ProdutoDTO>> findAll(){	
 		List<Produto> list = service.findAll();
@@ -53,8 +49,4 @@ public class ProdutoResource {
 				.collect( Collectors.toList() );
 		return ResponseEntity.ok().body(listDto);
 	}
-<<<<<<< HEAD
-	
-=======
->>>>>>> buscaPorUsuario
 }

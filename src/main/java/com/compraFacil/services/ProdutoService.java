@@ -26,19 +26,11 @@ public class ProdutoService {
 		}
 
 	}
-<<<<<<< HEAD
-	
-	public List<Produto> findAll() {
-		return repoProduto.findAll();
-	}
-	
-=======
 
 	public List<Produto> findAll() {
 		return repoProduto.findAll();
 	}
 
->>>>>>> buscaPorUsuario
 	public List<Produto> buscarPorCategoria(Integer id) {
 		List<Produto> prod = repoProduto.findAll();
 		List<Produto> prodCat = new ArrayList<Produto>();

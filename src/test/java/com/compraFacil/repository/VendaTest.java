@@ -12,7 +12,7 @@ import com.compraFacil.domain.Venda;
 
 
 public class VendaTest {
-	/*
+	
 	@Test
 	public void testandoVenda(){
 		Usuario usuario1 = new Usuario(1, "Santos", "flavio1@gmail.com", "fsan50", "1234");
@@ -29,5 +29,5 @@ public class VendaTest {
 		assertEquals(new Integer(1), venda.getId());
 		
 		
-	}*/
+	}
 }

@@ -11,17 +11,6 @@ import com.compraFacil.repositories.UsuarioRepository;
 import com.compraFacil.security.UserSS;
 
 @Service
-<<<<<<< HEAD
-public class UserDetailsServiceImpl implements UserDetailsService {
-
-	@Autowired
-	private UsuarioRepository repo;
-	
-	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		Usuario usr = repo.findByEmail(email);
-		if (usr == null) {
-=======
 public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	@Autowired
@@ -31,14 +20,9 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Usuario usr = repo.findByEmail(email);
 		if(usr == null) {
->>>>>>> buscaPorUsuario
 			throw new UsernameNotFoundException(email);
 		}
 		return new UserSS(usr.getId(), usr.getEmail(), usr.getSenha(), usr.getPerfis());
 	}
-<<<<<<< HEAD
-}
-=======
 
 }
->>>>>>> buscaPorUsuario
