@@ -19,28 +19,31 @@ import com.compraFacil.dto.ProdutoDTO;
 import com.compraFacil.services.ProdutoService;
 
 @RestController
-@RequestMapping(value="/produtos")
+@RequestMapping(value = "/produtos")
 public class ProdutoResource {
-	
+
 	@Autowired
 	private ProdutoService service;
-	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {	
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> find(@PathVariable Integer id) {
 		Produto prod = service.buscar(id);
 		CategoriaDTO catDto = new CategoriaDTO(prod.getCategoria());
 		ProdutoDTO prodDto = new ProdutoDTO(prod, catDto);
 		return ResponseEntity.ok().body(prodDto);
 	}
-	
-	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<?> find(@RequestBody Produto prod) {	
+
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<?> find(@RequestBody Produto prod) {
 		prod = service.insert(prod);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand( prod.getId() ).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(prod.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> buscaPorUsuario
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<ProdutoDTO>> findAll(){	
 		List<Produto> list = service.findAll();
@@ -50,5 +53,8 @@ public class ProdutoResource {
 				.collect( Collectors.toList() );
 		return ResponseEntity.ok().body(listDto);
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> buscaPorUsuario
 }

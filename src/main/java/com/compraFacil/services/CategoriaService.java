@@ -11,19 +11,23 @@ import com.compraFacil.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
-	
+
 	@Autowired
 	private CategoriaRepository repoCategoria;
-	
+
 	public Categoria buscar(Integer id) {
 		Categoria obj = repoCategoria.findOne(id);
 		if (obj == null) {
-			throw new ObjectNotFoundException("Objeto não encontrado! ID: " + id + ", Tipo: " + Categoria.class.getName());
-		}
-		else {
+			throw new ObjectNotFoundException(
+					"Objeto não encontrado! ID: " + id + ", Tipo: " + Categoria.class.getName());
+		} else {
 			return obj;
 		}
-		
+
+	}
+
+	public List<Categoria> findAll() {
+		return repoCategoria.findAll();
 	}
 	
 	public List<Categoria> findAll() {

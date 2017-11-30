@@ -12,30 +12,38 @@ import com.compraFacil.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class ProdutoService {
-	
+
 	@Autowired
 	private ProdutoRepository repoProduto;
-	
+
 	public Produto buscar(Integer id) {
 		Produto prod = repoProduto.findOne(id);
 		if (prod == null) {
-			throw new ObjectNotFoundException("Objeto não encontrado! ID: " + id + ", Tipo: " + Produto.class.getName());
-		}
-		else {
+			throw new ObjectNotFoundException(
+					"Objeto não encontrado! ID: " + id + ", Tipo: " + Produto.class.getName());
+		} else {
 			return prod;
 		}
-		
+
 	}
+<<<<<<< HEAD
 	
 	public List<Produto> findAll() {
 		return repoProduto.findAll();
 	}
 	
+=======
+
+	public List<Produto> findAll() {
+		return repoProduto.findAll();
+	}
+
+>>>>>>> buscaPorUsuario
 	public List<Produto> buscarPorCategoria(Integer id) {
 		List<Produto> prod = repoProduto.findAll();
 		List<Produto> prodCat = new ArrayList<Produto>();
 		for (Produto produto : prod) {
-			if(produto.getCategoria().getId()==id){
+			if (produto.getCategoria().getId() == id) {
 				prodCat.add(produto);
 			}
 		}

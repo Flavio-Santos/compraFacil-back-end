@@ -17,25 +17,25 @@ import com.compraFacil.domain.Categoria;
 import com.compraFacil.services.CategoriaService;
 
 @RestController
-@RequestMapping(value="/categorias")
+@RequestMapping(value = "/categorias")
 public class CategoriaResource {
-	
+
 	@Autowired
 	private CategoriaService service;
-	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Categoria> buscar(@PathVariable Integer id) {	
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Categoria> buscar(@PathVariable Integer id) {
 		Categoria cat = service.buscar(id);
 		return ResponseEntity.ok().body(cat);
 	}
-	
-	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<?> buscar(@RequestBody Categoria cat) {	
+
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<?> buscar(@RequestBody Categoria cat) {
 		cat = service.insert(cat);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand( cat.getId() ).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cat.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
+<<<<<<< HEAD
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<Categoria>> findAll(){	
@@ -45,3 +45,13 @@ public class CategoriaResource {
 	
 	
 }
+=======
+
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<Categoria>> findAll() {
+		List<Categoria> list = service.findAll();
+		return ResponseEntity.ok().body(list);
+	}
+
+}
+>>>>>>> buscaPorUsuario

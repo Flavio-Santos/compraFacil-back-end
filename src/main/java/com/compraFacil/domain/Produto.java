@@ -12,7 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonIgnore;
+=======
+import com.fasterxml.jackson.annotation.JsonBackReference;
+>>>>>>> buscaPorUsuario
 
 @Entity
 public class Produto implements Serializable{
@@ -23,6 +27,7 @@ public class Produto implements Serializable{
 	private Integer id;
 	private Double valor;
 	private String nome;
+	private String imagem;
 	private String descricao;
 	private String imagem;
 	
@@ -39,17 +44,23 @@ public class Produto implements Serializable{
 	}
 	
 	
+<<<<<<< HEAD
 	public Produto(Integer id, Double valor, String nome, String descricao, Categoria categoria, String imagem) {
+=======
+	public Produto(Integer id, Double valor, String nome, String imagem, String descricao, Categoria categoria) {
+>>>>>>> buscaPorUsuario
 		super();
 		this.id = id;
 		this.valor = valor;
 		this.nome = nome;
+		this.imagem = imagem;
 		this.descricao = descricao;
 		this.imagem = imagem;
 		this.categoria = categoria;
 	}
 
 
+<<<<<<< HEAD
 	
 	public String getImagem() {
 		return imagem;
@@ -61,6 +72,8 @@ public class Produto implements Serializable{
 	}
 
 
+=======
+>>>>>>> buscaPorUsuario
 	public Integer getId() {
 		return id;
 	}
@@ -79,6 +92,17 @@ public class Produto implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public String getImagem() {
+		return imagem;
+	}
+
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
+
+
 	public String getDescricao() {
 		return descricao;
 	}
