@@ -5,11 +5,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.compraFacil.domain.Venda;
+import com.compraFacil.domain.Anuncio;
 
 @Repository
-public interface VendaRepository extends JpaRepository<Venda, Integer>{
+public interface AnuncioRepository extends JpaRepository<Anuncio, Integer>{
+	List<Anuncio> findByVendedor(Integer id);
 
-	List<Venda> findByVendedor(Integer id);
-	
 }

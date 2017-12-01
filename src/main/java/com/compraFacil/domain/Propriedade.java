@@ -15,9 +15,9 @@ public class Propriedade {
 	private Integer id;
 	private String nome;
 	
-	@ManyToOne
-	@JoinColumn(name="produto_id")
-	private Produto produto;
+	//@ManyToOne
+	//@JoinColumn(name="anuncio_id")
+	private Anuncio anuncio;
 	
 	public Propriedade(){
 		
@@ -39,11 +39,11 @@ public class Propriedade {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Produto getProduto() {
-		return produto;
+	public Anuncio getAnuncio() {
+		return anuncio;
 	}
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setAnuncio(Anuncio anuncio) {
+		this.anuncio = anuncio;
 	}
 	
 	

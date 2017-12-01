@@ -15,7 +15,7 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repoCategoria;
 
-	public Categoria buscar(Integer id) {
+	public Categoria find(Integer id) {
 		Categoria obj = repoCategoria.findOne(id);
 		if (obj == null) {
 			throw new ObjectNotFoundException(
