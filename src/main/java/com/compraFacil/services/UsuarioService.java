@@ -37,12 +37,13 @@ public class UsuarioService {
 	private EnderecoRepository enderecoRepository;
 	
 	public Usuario find(Integer id) {
-		
+		//Comentario pro front do flavio funcionar
+		/*
 		UserSS user = UserService.authenticated();
 		if(user == null||!user.hasRole(Perfil.ADMIN)&&id.equals(user.getId())) {
 			throw new  AuthorizationException("Acesso Negado");
 		}
-		
+		*/
 		Usuario obj = repo.findOne(id);
 		
 		if (obj == null) {
@@ -82,18 +83,19 @@ public class UsuarioService {
 		return 	new Usuario(objDto.getId(), objDto.getNome(), objDto.getEmail(), null, null);
 	}
 	public Usuario fromDTO(UsuarioNewDTO objDto) {
-		Usuario usr = new Usuario(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), pe.encode(objDto.getSenha()));
-		Cidade cid = cidadeRepository.findOne(objDto.getCidadeId());
-		Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), usr, cid);
-		usr.getEnderecos().add(end);
-		usr.getTelefones().add(objDto.getTelefone1());
-		if(objDto.getTelefone2() != null) {
-			usr.getTelefones().add(objDto.getTelefone2());
-		}
-		if(objDto.getTelefone3() != null) {
-			usr.getTelefones().add(objDto.getTelefone3());
-		}
-		
+		Usuario usr = new Usuario(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), pe.encode(objDto.getSenha()), objDto.getAvatar());
+		System.out.println(objDto.getAvatar());
+		//Comentario pro front do flavio funcionar
+		//Cidade cid = cidadeRepository.findOne(objDto.getCidadeId());
+		//Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), usr, cid);
+		//usr.getEnderecos().add(end);
+		//usr.getTelefones().add(objDto.getTelefone1());
+		//if(objDto.getTelefone2() != null) {
+		//	usr.getTelefones().add(objDto.getTelefone2());
+		//}
+		//if(objDto.getTelefone3() != null) {
+		//	usr.getTelefones().add(objDto.getTelefone3());
+		//}
 		return usr;
 	}
 	private void updateData(Usuario newObj, Usuario obj) {

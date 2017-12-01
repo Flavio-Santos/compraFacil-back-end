@@ -17,7 +17,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.compraFacil.dto.CategoriaDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Anuncio implements Serializable{
@@ -30,17 +32,11 @@ public class Anuncio implements Serializable{
 	private String nome;
 	private String descricao;
 	private String telefone;
-	private Date dataCriacao;
-	private Date dataFechamento;
-	
-	@ManyToOne
-	@JoinColumn(name="comprador_id")
-	private Usuario comprador;
 
+	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name="vendedor_id")
-	private Usuario vendedor;
-	
+	@JoinColumn(name="categoria_id")
+	private Categoria categoria;
 	
 	@ManyToOne
 	@JoinColumn(name="localizacao_id")
@@ -50,16 +46,24 @@ public class Anuncio implements Serializable{
 	@CollectionTable(name="IMAGEM" )
 	private Set<String> imagens = new HashSet<>();
 	
-	@JsonBackReference
-	@ManyToOne
-	@JoinColumn(name="categoria_id")
-	private Categoria categoria;
-	
 	@OneToMany(mappedBy="anuncio")
 	private List<Propriedade> propriedades = new ArrayList<>();
 	
+	@JsonFormat(pattern="dd/MM/yyyy hh:mm")
+	private Date dataCriacao;
+	
+	@JsonFormat(pattern="dd/MM/yyyy hh:mm")
+	private Date dataFechamento;
+
+	@ManyToOne
+	@JoinColumn(name="vendedor_id")
+	private Usuario vendedor;
+	
+	@ManyToOne
+	@JoinColumn(name="comprador_id")
+	private Usuario comprador;
+	
 	public Anuncio() {
-		
 	}
 
 	public Anuncio(Integer id, Double valor, String nome, String descricao, String telefone, Date dataCriacao, Date dataFechamento, 
@@ -205,7 +209,6 @@ public class Anuncio implements Serializable{
 			return false;
 		return true;
 	}
-	
 	
 
 	

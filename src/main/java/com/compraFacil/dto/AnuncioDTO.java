@@ -1,11 +1,17 @@
 package com.compraFacil.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import com.compraFacil.domain.Anuncio;
 import com.compraFacil.domain.Localizacao;
+import com.compraFacil.domain.Propriedade;
 import com.compraFacil.domain.Usuario;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class AnuncioDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -15,13 +21,17 @@ public class AnuncioDTO implements Serializable {
 	private String nome;
 	private String descricao;
 	private String telefone;
+	private CategoriaDTO categoria;
+	private Localizacao localizacao;
+	private Set<String> imagens = new HashSet<>();
+	private List<Propriedade> propriedades = new ArrayList<>();
+	@JsonFormat(pattern="dd/MM/yyyy hh:mm")
 	private Date dataCriacao;
+	@JsonFormat(pattern="dd/MM/yyyy hh:mm")
 	private Date dataFechamento;
 	private Usuario vendedor;
 	private Usuario comprador;
-	private Localizacao localizacao;
-	private CategoriaDTO categoria;
-
+	
 	public AnuncioDTO() {
 	}
 
@@ -37,6 +47,8 @@ public class AnuncioDTO implements Serializable {
 		comprador = obj.getComprador();
 		localizacao = obj.getLocalizacao();
 		this.categoria = new CategoriaDTO(obj.getCategoria());
+		this.setImagens(obj.getImagens());
+		this.setPropriedades(obj.getPropriedades());
 	}
 
 	public Integer getId() {
@@ -126,6 +138,22 @@ public class AnuncioDTO implements Serializable {
 
 	public void setCategoria(CategoriaDTO categoriaDTO) {
 		this.categoria = categoriaDTO;
+	}
+
+	public Set<String> getImagens() {
+		return imagens;
+	}
+
+	public void setImagens(Set<String> imagens) {
+		this.imagens = imagens;
+	}
+
+	public List<Propriedade> getPropriedades() {
+		return propriedades;
+	}
+
+	public void setPropriedades(List<Propriedade> propriedades) {
+		this.propriedades = propriedades;
 	}
 	
 	
