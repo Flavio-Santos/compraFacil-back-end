@@ -41,15 +41,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final String[] PUBLIC_MATCHERS = {
 			"/h2-console/**"
 	};
-
+	//Comentario pro front do flavio funcionar
 	private static final String[] PUBLIC_MATCHERS_GET = {
 			"/anuncios/**",
-			"/categorias/**"
+			"/categorias/**",
+			"/usuarios/**",
+			"/**",
 	};
-	
+	//Comentario pro front do flavio funcionar
 	private static final String[] PUBLIC_MATCHERS_POST = {
-			"/usuarios/**"
-			
+			"/usuarios/**",
+			"/**"
 	};
 
 	@Override

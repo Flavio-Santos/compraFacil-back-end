@@ -23,13 +23,16 @@ public class UsuarioDTO implements Serializable{
 		@Email(message="Email inválido")
 		private String email;
 		
+		private String avatar;
+		
 		public UsuarioDTO() {
 		}
 		
 		public UsuarioDTO(Usuario obj) {
 			id = obj.getId();
 			nome = obj.getNome();
-			email =obj.getEmail();
+			email = obj.getEmail();
+			this.avatar = obj.getAvatar();
 		}
 
 		public Integer getId() {
@@ -54,6 +57,14 @@ public class UsuarioDTO implements Serializable{
 
 		public void setEmail(String email) {
 			this.email = email;
+		}
+
+		public String getAvatar() {
+			return avatar;
+		}
+
+		public void setAvatar(String avatar) {
+			this.avatar = avatar;
 		}
 		
 		

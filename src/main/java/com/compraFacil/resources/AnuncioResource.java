@@ -29,21 +29,21 @@ public class AnuncioResource {
 	private AnuncioService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Anuncio> find(@PathVariable Integer id) {
-		
+	public ResponseEntity<AnuncioDTO> find(@PathVariable Integer id) {
 		Anuncio obj = service.find(id);
-		return ResponseEntity.ok().body(obj);
-	
+		AnuncioDTO objDto = new AnuncioDTO(obj);
+		return ResponseEntity.ok().body(objDto);
 	}
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody AnuncioNewDTO objDTO) {
 		Anuncio obj = service.fromDTO(objDTO);
 		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(obj.getId()).toUri();
-		
+		URI uri = ServletUriComponentsBuilder
+				.fromCurrentRequest()
+				.path("/{id}")
+				.buildAndExpand(obj.getId())
+				.toUri();
 		return ResponseEntity.created(uri).build();
-		
 	}
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody AnuncioDTO objDTO, @PathVariable Integer id){
@@ -57,10 +57,7 @@ public class AnuncioResource {
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
-		
 	}
-
-	
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity <List<AnuncioDTO>> findAll() {

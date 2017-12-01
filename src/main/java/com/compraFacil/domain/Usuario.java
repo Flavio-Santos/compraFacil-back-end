@@ -27,13 +27,17 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(unique=true)
 	private String nome;
+	
+	@Column(unique=true)
 	private String email;
+	
 	private String cpfOuCnpj;
 
 	@JsonIgnore
 	private String senha;
+	
+	private String avatar = "http://www.nightlife.ca/assets/images/default/user_picture_default.png";
 	
 	@OneToMany(mappedBy="usuario", cascade=CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
@@ -58,7 +62,17 @@ public class Usuario {
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.senha = senha;
 		addPerfil(Perfil.USUARIO);
-
+	}
+	
+	public Usuario(Integer id, String nome, String email, String cpfOuCnpj, String senha, String avatar) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.cpfOuCnpj = cpfOuCnpj;
+		this.senha = senha;
+		addPerfil(Perfil.USUARIO);
+		this.avatar = (avatar.isEmpty() || avatar == null) ? "http://www.nightlife.ca/assets/images/default/user_picture_default.png" : avatar;
 	}
 
 	public Integer getId() {
@@ -144,6 +158,14 @@ public class Usuario {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 	
 }

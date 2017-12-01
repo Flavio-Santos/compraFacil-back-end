@@ -24,8 +24,10 @@ public class UsuarioNewDTO implements Serializable{
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
-	//@NotEmpty(message="Preenchimento obrigatório")
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String senha;
+	
+	private String avatar = "http://www.nightlife.ca/assets/images/default/user_picture_default.png";
 	
 	//@NotEmpty(message="Preenchimento obrigatório")
 	private String logradouro;
@@ -158,6 +160,14 @@ public class UsuarioNewDTO implements Serializable{
 
 	public void setCidadeId(Integer cidadeId) {
 		this.cidadeId = cidadeId;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 	

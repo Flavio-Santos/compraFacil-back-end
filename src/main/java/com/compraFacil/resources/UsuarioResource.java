@@ -53,16 +53,16 @@ public class UsuarioResource {
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
-	
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	//Comentario pro front do flavio funcionar
+	//@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 		
 	}
-
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	//Comentario pro front do flavio funcionar
+	//@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity <List<UsuarioDTO>> findAll() {
 		List<Usuario> list = service.findAll();

@@ -25,11 +25,13 @@ public class UsuarioInsertValidator implements ConstraintValidator<UsuarioInsert
 
 	@Override
 	public boolean isValid(UsuarioNewDTO objDto, ConstraintValidatorContext context) {
-		List<FieldMessage> list = new ArrayList<>();
 		
+		List<FieldMessage> list = new ArrayList<>();
+		//Comentario pro front do flavio funcionar
+		/*
 		if(objDto.getTipo().equals(!BR.isValidCPF(objDto.getCpfOuCnpj()))) {
 			list.add(new FieldMessage("cpfOuCnpj", "CPF inválido"));
-		}
+		}*/
 		
 		
 		Usuario aux = repo.findByEmail(objDto.getEmail());
