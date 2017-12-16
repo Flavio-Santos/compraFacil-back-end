@@ -23,7 +23,6 @@ public class CategoriaService {
 		} else {
 			return obj;
 		}
-
 	}
 
 	public List<Categoria> findAll() {
@@ -32,6 +31,7 @@ public class CategoriaService {
 
 	public Categoria insert(Categoria cat) {
 		cat.setId(null);
-		return repoCategoria.save(cat);
+		cat = repoCategoria.save(cat);
+		return cat;
 	}
 }
