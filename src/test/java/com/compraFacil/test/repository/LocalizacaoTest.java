@@ -1,4 +1,4 @@
-package com.compraFacil.repository;
+package com.compraFacil.test.repository;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;

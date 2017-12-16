@@ -1,4 +1,4 @@
-package com.compraFacil.repository;
+package com.compraFacil.test.repository;
 
 
 public class VendaTest {
