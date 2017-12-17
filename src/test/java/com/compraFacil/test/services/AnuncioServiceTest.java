@@ -75,21 +75,13 @@ public class AnuncioServiceTest {
         Assert.assertEquals("failure - expected size", 4, list.size());
     }
 
-    @Test
+    @Test(expected = ObjectNotFoundException.class)
     public void testCreateWithId() {
-        Exception exception = null;
-
         Anuncio anun = new Anuncio();
         anun.setId(Integer.MAX_VALUE);
         anun.setNome("test");
 
-        try {
-            service.insert(anun);
-        } catch (EntityExistsException e) {
-            exception = e;
-        }
-
-        Assert.assertNull("failure - expected null", exception);
+        service.insert(anun);
     }
 
     

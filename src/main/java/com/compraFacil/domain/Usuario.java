@@ -46,6 +46,9 @@ public class Usuario {
 	@CollectionTable(name="TELEFONE" )
 	private Set<String> telefones = new HashSet<>();
 	
+	@OneToMany(mappedBy="vendedor")
+	private List<Anuncio> anunciosCriados = new ArrayList<>();
+	
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name="PERFIS")
 	private Set<Integer> perfis = new HashSet<>();
@@ -167,6 +170,16 @@ public class Usuario {
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
+	
+
+	public List<Anuncio> getAnunciosCriados() {
+		return anunciosCriados;
+	}
+
+	public void setAnunciosCriados(List<Anuncio> anunciosCriados) {
+		this.anunciosCriados = anunciosCriados;
+	}
+
 	
 }
 	

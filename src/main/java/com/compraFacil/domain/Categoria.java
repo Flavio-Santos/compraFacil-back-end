@@ -10,8 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Categoria implements Serializable{
@@ -21,8 +20,8 @@ public class Categoria implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	
-	@JsonManagedReference
+
+	@JsonIgnore
 	@OneToMany(mappedBy="categoria")
 	private List<Anuncio> anuncios = new ArrayList<>();
 	
@@ -77,7 +76,4 @@ public class Categoria implements Serializable{
 	public void setAnuncios(List<Anuncio> anuncios) {
 		this.anuncios = anuncios;
 	}
-	
-	
-	
 }

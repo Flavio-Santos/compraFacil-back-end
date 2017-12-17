@@ -1,6 +1,7 @@
 package com.compraFacil.resources;
 
 import java.net.URI;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,15 +19,19 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.compraFacil.domain.Anuncio;
+import com.compraFacil.domain.Usuario;
 import com.compraFacil.dto.AnuncioDTO;
 import com.compraFacil.dto.AnuncioNewDTO;
 import com.compraFacil.services.AnuncioService;
+import com.compraFacil.services.UsuarioService;
 
 @RestController
 @RequestMapping(value="/anuncios")
 public class AnuncioResource {
 	@Autowired
 	private AnuncioService service;
+	@Autowired
+	private UsuarioService usuarioService;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<AnuncioDTO> find(@PathVariable Integer id) {
@@ -34,10 +39,10 @@ public class AnuncioResource {
 		AnuncioDTO objDto = new AnuncioDTO(obj);
 		return ResponseEntity.ok().body(objDto);
 	}
+	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody AnuncioNewDTO objDTO) {
-		Anuncio obj = service.fromDTO(objDTO);
-		obj = service.insert(obj);
+		Anuncio obj = service.insert(service.fromDTO(objDTO));
 		URI uri = ServletUriComponentsBuilder
 				.fromCurrentRequest()
 				.path("/{id}")
@@ -59,13 +64,22 @@ public class AnuncioResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@RequestMapping(value = "/{id}/comprar/{idComprador}", method = RequestMethod.GET)
+	public ResponseEntity<AnuncioDTO> find(@PathVariable Integer id, @PathVariable Integer idComprador) {
+		Anuncio anuncio = service.find(id);
+		Usuario comprador = usuarioService.find(idComprador);
+		service.efetuaVenda(anuncio, comprador);
+		AnuncioDTO anuncioDto = new AnuncioDTO(anuncio);
+		return ResponseEntity.ok().body(anuncioDto);
+	}
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity <List<AnuncioDTO>> findAll() {
 		List<Anuncio> list = service.findAll();
 		List<AnuncioDTO> listDTO = list.stream().map(obj -> new AnuncioDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
-	
 	}
+	
 	@RequestMapping(value="/page", method = RequestMethod.GET)
 	public ResponseEntity <Page<AnuncioDTO>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 

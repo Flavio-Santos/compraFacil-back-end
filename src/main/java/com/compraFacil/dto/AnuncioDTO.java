@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.compraFacil.domain.Anuncio;
+import com.compraFacil.domain.Categoria;
 import com.compraFacil.domain.Localizacao;
 import com.compraFacil.domain.Propriedade;
 import com.compraFacil.domain.Usuario;
@@ -20,8 +21,9 @@ public class AnuncioDTO implements Serializable {
 	private Double valor;
 	private String nome;
 	private String descricao;
+	private Boolean vendido;
 	private String telefone;
-	private CategoriaDTO categoria;
+	private Categoria categoria;
 	private Localizacao localizacao;
 	private Set<String> imagens = new HashSet<>();
 	private List<Propriedade> propriedades = new ArrayList<>();
@@ -29,24 +31,25 @@ public class AnuncioDTO implements Serializable {
 	private Date dataCriacao;
 	@JsonFormat(pattern="dd/MM/yyyy hh:mm")
 	private Date dataFechamento;
-	private Usuario vendedor;
-	private Usuario comprador;
+	private UsuarioDTO vendedor;
+	private UsuarioDTO comprador;
 	
 	public AnuncioDTO() {
 	}
 
 	public AnuncioDTO(Anuncio obj) {
-		id = obj.getId();
-		valor = obj.getValor();
-		nome = obj.getNome();
-		descricao = obj.getDescricao();
-		telefone = obj.getTelefone();
-		dataCriacao = obj.getDataCriacao();
-		dataFechamento = obj.getDataFechamento();
-		vendedor = obj.getVendedor();
-		comprador = obj.getComprador();
-		localizacao = obj.getLocalizacao();
-		this.categoria = new CategoriaDTO(obj.getCategoria());
+		this.id = obj.getId();
+		this.valor = obj.getValor();
+		this.nome = obj.getNome();
+		this.descricao = obj.getDescricao();
+		this.setVendido(obj.getVendido());
+		this.telefone = obj.getTelefone();
+		this.dataCriacao = obj.getDataCriacao();
+		this.dataFechamento = obj.getDataFechamento();
+		this.vendedor = obj.getVendedor() == null ? null : new UsuarioDTO(obj.getVendedor());
+		this.comprador = obj.getComprador() == null ? null : new UsuarioDTO(obj.getComprador());
+		this.localizacao = obj.getLocalizacao();
+		this.setCategoria(obj.getCategoria());
 		this.setImagens(obj.getImagens());
 		this.setPropriedades(obj.getPropriedades());
 	}
@@ -107,21 +110,7 @@ public class AnuncioDTO implements Serializable {
 		this.dataFechamento = dataFechamento;
 	}
 
-	public Usuario getVendedor() {
-		return vendedor;
-	}
-
-	public void setVendedor(Usuario vendedor) {
-		this.vendedor = vendedor;
-	}
-
-	public Usuario getComprador() {
-		return comprador;
-	}
-
-	public void setComprador(Usuario comprador) {
-		this.comprador = comprador;
-	}
+	
 
 	public Localizacao getLocalizacao() {
 		return localizacao;
@@ -129,15 +118,6 @@ public class AnuncioDTO implements Serializable {
 
 	public void setLocalizacao(Localizacao localizacao) {
 		this.localizacao = localizacao;
-	}
-
-
-	public CategoriaDTO getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(CategoriaDTO categoriaDTO) {
-		this.categoria = categoriaDTO;
 	}
 
 	public Set<String> getImagens() {
@@ -154,6 +134,38 @@ public class AnuncioDTO implements Serializable {
 
 	public void setPropriedades(List<Propriedade> propriedades) {
 		this.propriedades = propriedades;
+	}
+
+	public UsuarioDTO getVendedor() {
+		return vendedor;
+	}
+
+	public void setVendedor(UsuarioDTO vendedor) {
+		this.vendedor = vendedor;
+	}
+
+	public UsuarioDTO getComprador() {
+		return comprador;
+	}
+
+	public void setComprador(UsuarioDTO comprador) {
+		this.comprador = comprador;
+	}
+
+	public Boolean getVendido() {
+		return vendido;
+	}
+
+	public void setVendido(Boolean vendido) {
+		this.vendido = vendido;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 	
 	

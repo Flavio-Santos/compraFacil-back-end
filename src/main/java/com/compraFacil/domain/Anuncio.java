@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import com.compraFacil.dto.CategoriaDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Anuncio implements Serializable{
@@ -32,8 +33,8 @@ public class Anuncio implements Serializable{
 	private String nome;
 	private String descricao;
 	private String telefone;
-
-	@JsonBackReference
+	private Boolean vendido = false;
+	
 	@ManyToOne
 	@JoinColumn(name="categoria_id")
 	private Categoria categoria;
@@ -54,11 +55,13 @@ public class Anuncio implements Serializable{
 	
 	@JsonFormat(pattern="dd/MM/yyyy hh:mm")
 	private Date dataFechamento;
-
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="vendedor_id")
 	private Usuario vendedor;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="comprador_id")
 	private Usuario comprador;
@@ -82,6 +85,16 @@ public class Anuncio implements Serializable{
 		this.categoria = categoria;
 	}
 
+	public Boolean efetuaVenda(Usuario comprador) {
+		if (this.getVendido()) {
+			return false;
+		}
+		this.comprador = comprador;
+		this.dataFechamento = new Date();
+		this.setVendido(true);
+		return true;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -208,6 +221,14 @@ public class Anuncio implements Serializable{
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public Boolean getVendido() {
+		return vendido;
+	}
+
+	public void setVendido(Boolean vendido) {
+		this.vendido = vendido;
 	}
 	
 

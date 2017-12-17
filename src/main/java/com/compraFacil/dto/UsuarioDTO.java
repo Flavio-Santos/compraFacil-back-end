@@ -1,13 +1,18 @@
 package com.compraFacil.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.compraFacil.domain.Anuncio;
 import com.compraFacil.domain.Usuario;
 import com.compraFacil.services.validation.UsuarioUpdate;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @UsuarioUpdate
 public class UsuarioDTO implements Serializable{
@@ -22,9 +27,8 @@ public class UsuarioDTO implements Serializable{
 		@NotEmpty(message="Preenchimento obrigatório")
 		@Email(message="Email inválido")
 		private String email;
-		
 		private String avatar;
-		
+
 		public UsuarioDTO() {
 		}
 		
@@ -32,8 +36,8 @@ public class UsuarioDTO implements Serializable{
 			id = obj.getId();
 			nome = obj.getNome();
 			email = obj.getEmail();
-			this.avatar = obj.getAvatar();
-		}
+			this.avatar = obj.getAvatar();	
+			}
 
 		public Integer getId() {
 			return id;
@@ -66,7 +70,5 @@ public class UsuarioDTO implements Serializable{
 		public void setAvatar(String avatar) {
 			this.avatar = avatar;
 		}
-		
-		
 
 	}

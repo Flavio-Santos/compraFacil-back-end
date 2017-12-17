@@ -12,15 +12,15 @@ import com.compraFacil.domain.Localizacao;
 import com.compraFacil.services.LocalizacaoService;
 
 @RestController
-@RequestMapping(value="/localizacao")
+@RequestMapping(value = "/localizacao")
 public class LocalizacaoResource {
 
 	@Autowired
 	private LocalizacaoService localizacaoService;
 
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<Localizacao>> findAll() {	
-		 List<Localizacao> localizacoes = localizacaoService.findAll();
+		List<Localizacao> localizacoes = localizacaoService.findAll();
 		return ResponseEntity.ok().body(localizacoes);
 	}
 }

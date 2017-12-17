@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.compraFacil.domain.Anuncio;
 import com.compraFacil.domain.Usuario;
 import com.compraFacil.dto.UsuarioDTO;
 import com.compraFacil.dto.UsuarioNewDTO;
+import com.compraFacil.services.AnuncioService;
 import com.compraFacil.services.UsuarioService;
 
 @RestController
@@ -28,11 +30,14 @@ import com.compraFacil.services.UsuarioService;
 public class UsuarioResource {
 	@Autowired
 	private UsuarioService service;
+	@Autowired
+	private AnuncioService AnunService;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Usuario> find(@PathVariable Integer id) {
 		
 		Usuario obj = service.find(id);
+		//List<Anuncio> list = AnunService.findAnunciosByVendedorId(id);
 		return ResponseEntity.ok().body(obj);
 	
 	}

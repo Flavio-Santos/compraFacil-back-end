@@ -3,6 +3,8 @@ package com.compraFacil.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.compraFacil.domain.Categoria;
@@ -15,7 +17,7 @@ public class AnuncioNewDTO implements Serializable {
 
 	private Integer id;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
+	@NotNull(message="Preenchimento obrigatório")
 	private Double valor;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
