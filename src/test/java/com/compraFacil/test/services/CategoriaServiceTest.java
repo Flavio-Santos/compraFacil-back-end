@@ -53,18 +53,17 @@ public class CategoriaServiceTest {
     
     @Test
     public void testInsert() {
-        Categoria cat = new Categoria(null, "Teste");
-        service.insert(cat);
+        Categoria cat = new Categoria(null, "Insert Test");
+        Categoria createCat = service.insert(cat);
         
         Assert.assertNotNull("failure - expected not null", cat);
-        Assert.assertNotNull("failure - expected id attribute not null", cat.getId());
-        Assert.assertEquals("failure - expected nome attribute to match", "Teste", cat.getNome()); 
+        Assert.assertNotNull("failure - expected id attribute not null", createCat.getId());
+        Assert.assertEquals("failure - expected nome attribute to match", cat.getNome(), createCat.getNome()); 
         
         List<Categoria> list = service.findAll();
         Assert.assertEquals("failure - expected size", 4, list.size());
     }
 
-    
     @Test
     public void testCreateWithId() {
         Exception exception = null;
@@ -84,17 +83,13 @@ public class CategoriaServiceTest {
 
     @Test
     public void testUpdate() {
-    	Integer id = 1;
+    	Integer id = 2;
         Categoria cat = service.find(id);
 
         Assert.assertNotNull("failure - expected not null", cat);
 
         Categoria newCat = new Categoria(cat.getId(), cat.getNome());
         newCat.setNome("teste");
-        
-        System.out.println(cat.getNome());
-        
-        System.out.println(newCat.getNome());
         
         Categoria updatedCategoria = service.update(newCat, cat);
 
@@ -105,15 +100,10 @@ public class CategoriaServiceTest {
     
     @Test(expected=ObjectNotFoundException.class) 
     public void testDelete() {
-        Integer id = 1;
-        Categoria cat = service.find(id);
-        
-        Assert.assertNotNull("failure - expected not null", cat);
+        Integer id = 2;
 
         service.delete(id);
         service.find(id);
     }
 
 }
-
-
