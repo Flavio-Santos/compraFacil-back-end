@@ -47,10 +47,9 @@ public class CategoriaResource {
 
 	//@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody Categoria objDTO, @PathVariable Integer id){
-		Categoria obj = service.find(objDTO.getId());
-		obj.setId(id);
-		service.update(obj, objDTO);
+	public ResponseEntity<Void> update(@Valid @RequestBody Categoria newCat, @PathVariable Integer id){
+		Categoria obj = service.find(id);
+		service.update(newCat, obj);
 		return ResponseEntity.noContent().build();
 	}
 	

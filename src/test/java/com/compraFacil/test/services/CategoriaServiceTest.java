@@ -50,7 +50,6 @@ public class CategoriaServiceTest {
         @SuppressWarnings("unused")
 		Categoria cat = service.find(id);
     }
-
     
     @Test
     public void testInsert() {
@@ -83,7 +82,6 @@ public class CategoriaServiceTest {
         Assert.assertNull("failure - expected null", exception);
     }
 
-    /*
     @Test
     public void testUpdate() {
     	Integer id = 1;
@@ -91,25 +89,30 @@ public class CategoriaServiceTest {
 
         Assert.assertNotNull("failure - expected not null", cat);
 
-        String updateDesc = cat.getNome() + " - test";
-        cat.setNome(updateDesc);
+        Categoria newCat = new Categoria(cat.getId(), cat.getNome());
+        newCat.setNome("teste");
         
-        Categoria updatedCategoria = service.update(cat);
+        System.out.println(cat.getNome());
+        
+        System.out.println(newCat.getNome());
+        
+        Categoria updatedCategoria = service.update(newCat, cat);
 
         Assert.assertNotNull("failure - expected not null", updatedCategoria);
         Assert.assertEquals("failure - expected id attribute to match", id, updatedCategoria.getId());
-        Assert.assertEquals("failure - expected descricao attribute to match", updateDesc, updatedCategoria.getNome());
+        Assert.assertEquals("failure - expected nome attribute to match", "teste", updatedCategoria.getNome());
     }
     
     @Test(expected=ObjectNotFoundException.class) 
     public void testDelete() {
         Integer id = 1;
         Categoria cat = service.find(id);
+        
         Assert.assertNotNull("failure - expected not null", cat);
 
         service.delete(id);
         service.find(id);
-    }*/
+    }
 
 }
 
