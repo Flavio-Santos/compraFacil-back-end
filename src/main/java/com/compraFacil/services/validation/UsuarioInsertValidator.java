@@ -12,7 +12,6 @@ import com.compraFacil.domain.Usuario;
 import com.compraFacil.dto.UsuarioNewDTO;
 import com.compraFacil.repositories.UsuarioRepository;
 import com.compraFacil.resources.exceptions.FieldMessage;
-import com.compraFacil.services.validation.utils.BR;
 
 public class UsuarioInsertValidator implements ConstraintValidator<UsuarioInsert, UsuarioNewDTO> {
 	

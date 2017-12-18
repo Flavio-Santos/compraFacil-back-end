@@ -2,7 +2,6 @@ package com.compraFacil.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.compraFacil.domain.Anuncio;
 import com.compraFacil.domain.Categoria;
-import com.compraFacil.dto.UsuarioDTO;
 import com.compraFacil.repositories.CategoriaRepository;
 import com.compraFacil.services.exceptions.DataIntegrityException;
 import com.compraFacil.services.exceptions.ObjectNotFoundException;

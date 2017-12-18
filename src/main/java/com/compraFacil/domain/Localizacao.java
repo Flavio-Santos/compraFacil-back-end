@@ -28,8 +28,6 @@ public class Localizacao {
 		Descricao = descricao;
 	}
 
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -86,6 +84,4 @@ public class Localizacao {
 	public void setDescricao(String descricao) {
 		Descricao = descricao;
 	}
-	
-	
 }

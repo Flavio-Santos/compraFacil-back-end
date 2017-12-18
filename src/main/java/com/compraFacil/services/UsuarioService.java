@@ -10,17 +10,11 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.compraFacil.domain.Cidade;
-import com.compraFacil.domain.Endereco;
 import com.compraFacil.domain.Usuario;
-import com.compraFacil.domain.enums.Perfil;
 import com.compraFacil.dto.UsuarioDTO;
 import com.compraFacil.dto.UsuarioNewDTO;
-import com.compraFacil.repositories.CidadeRepository;
 import com.compraFacil.repositories.EnderecoRepository;
 import com.compraFacil.repositories.UsuarioRepository;
-import com.compraFacil.security.UserSS;
-import com.compraFacil.services.exceptions.AuthorizationException;
 import com.compraFacil.services.exceptions.DataIntegrityException;
 import com.compraFacil.services.exceptions.ObjectNotFoundException;
 
@@ -31,8 +25,8 @@ public class UsuarioService {
 	private BCryptPasswordEncoder pe;
 	@Autowired
 	private UsuarioRepository repo;
-	@Autowired
-	private CidadeRepository cidadeRepository;
+	//@Autowired
+	//private CidadeRepository cidadeRepository;
 	@Autowired
 	private EnderecoRepository enderecoRepository;
 	

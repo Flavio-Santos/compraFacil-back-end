@@ -11,7 +11,6 @@ import com.compraFacil.domain.Anuncio;
 import com.compraFacil.domain.Categoria;
 import com.compraFacil.domain.Localizacao;
 import com.compraFacil.domain.Propriedade;
-import com.compraFacil.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class AnuncioDTO implements Serializable {
@@ -110,8 +109,6 @@ public class AnuncioDTO implements Serializable {
 		this.dataFechamento = dataFechamento;
 	}
 
-	
-
 	public Localizacao getLocalizacao() {
 		return localizacao;
 	}
@@ -167,7 +164,4 @@ public class AnuncioDTO implements Serializable {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
-	
-
 }
