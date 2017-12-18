@@ -56,6 +56,20 @@ public class AnuncioServiceTest {
         @SuppressWarnings("unused")
 		Anuncio anun = service.find(id);
     }
+    
+    @Test
+    public void testFindAnunciosByUsuario() {
+    	Integer id = 1;
+    	Usuario user = usuarioService.find(id);
+    	
+    	Assert.assertNotNull("failure - expected not null", user);
+    	
+    	List<Anuncio> anuncios = service.findByUsuario(user);
+    	
+    	Assert.assertEquals("failure - expected size list to match", 2 , anuncios.size());
+    	
+        service.find(id);
+    }
 
     @Test(expected=ObjectNotFoundException.class)
     public void testInsertAnuncioWithoutVendedor() {
@@ -102,6 +116,22 @@ public class AnuncioServiceTest {
         Assert.assertEquals("failure - expected size", 4, list.size());
     }
 
+    @Test
+    public void testEfetuarCompra() {
+    	Integer id = 2;
+    	Usuario user = usuarioService.find(id);
+    	Anuncio anun = service.find(id);
+    	Assert.assertNotNull("failure - expected not null", user);
+    	Assert.assertNotNull("failure - expected not null", anun);
+    	
+    	service.efetuaVenda(anun, user);
+    	
+    	Assert.assertNotNull("failure - expected not null", anun.getComprador());
+    	Assert.assertEquals("failure - expected comprador attribute to match", user , anun.getComprador());
+    	
+        service.find(id);
+    }
+    
     @Test(expected = ObjectNotFoundException.class)
     public void testCreateWithId() {
         Anuncio anun = new Anuncio();

@@ -38,8 +38,10 @@ public class AnuncioService {
 	public Anuncio efetuaVenda(Anuncio obj, Usuario comprador) {
 		Anuncio anuncio = find(obj.getId());
 		//lançar exceção que não pode vender para ele mesmo
-		if (anuncio.getVendedor().getId() != comprador.getId()) {
-			anuncio.efetuaVenda(comprador);
+		if (anuncio.getVendedor() != null) {
+			if (anuncio.getVendedor().getId() != comprador.getId()) {
+				anuncio.efetuaVenda(comprador);
+			}
 		}
 		return repoAnuncio.save(anuncio);
 	}
