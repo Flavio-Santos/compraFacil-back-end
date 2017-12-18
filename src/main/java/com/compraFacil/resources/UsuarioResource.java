@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.compraFacil.domain.Anuncio;
+import com.compraFacil.domain.Categoria;
 import com.compraFacil.domain.Usuario;
 import com.compraFacil.dto.UsuarioDTO;
 import com.compraFacil.dto.UsuarioNewDTO;
@@ -55,9 +56,9 @@ public class UsuarioResource {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody UsuarioDTO objDTO, @PathVariable Integer id){
-		Usuario obj = service.fromDTO(objDTO);
-		obj.setId(id);
-		obj = service.update(obj);
+		Usuario obj = service.find(id);
+		Usuario newObj = service.fromDTO(objDTO);
+		service.update(newObj, obj);
 		return ResponseEntity.noContent().build();
 	}
 	

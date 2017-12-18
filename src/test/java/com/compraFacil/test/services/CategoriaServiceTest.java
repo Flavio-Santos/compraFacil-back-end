@@ -2,8 +2,6 @@ package com.compraFacil.test.services;
 
 import java.util.List;
 
-import javax.persistence.EntityExistsException;
-
 import org.junit.Assert;
 
 import org.junit.Test;
@@ -54,11 +52,11 @@ public class CategoriaServiceTest {
     @Test
     public void testInsert() {
         Categoria cat = new Categoria(null, "Insert Test");
-        Categoria createCat = service.insert(cat);
+        Categoria createdCat = service.insert(cat);
         
         Assert.assertNotNull("failure - expected not null", cat);
-        Assert.assertNotNull("failure - expected id attribute not null", createCat.getId());
-        Assert.assertEquals("failure - expected nome attribute to match", cat.getNome(), createCat.getNome()); 
+        Assert.assertNotNull("failure - expected id attribute not null", createdCat.getId());
+        Assert.assertEquals("failure - expected nome attribute to match", cat.getNome(), createdCat.getNome()); 
         
         List<Categoria> list = service.findAll();
         Assert.assertEquals("failure - expected size", 4, list.size());
@@ -66,19 +64,14 @@ public class CategoriaServiceTest {
 
     @Test
     public void testCreateWithId() {
-        Exception exception = null;
+    	Integer id = Integer.MAX_VALUE;
+        
+        Categoria cat = new Categoria(id, "test");
 
-        Categoria cat = new Categoria();
-        cat.setId(Integer.MAX_VALUE);
-        cat.setNome("teste");
-
-        try {
-            service.insert(cat);
-        } catch (EntityExistsException e) {
-            exception = e;
-        }
-
-        Assert.assertNull("failure - expected null", exception);
+        service.insert(cat);
+        
+        Assert.assertNotNull("failure - expected not null", cat);
+        Assert.assertNotEquals("failure - expected id attribute to not match", cat.getId() , id);
     }
 
     @Test

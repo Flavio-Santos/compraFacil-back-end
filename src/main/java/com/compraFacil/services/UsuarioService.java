@@ -59,9 +59,9 @@ public class UsuarioService {
 		enderecoRepository.save(obj.getEnderecos());
 		return obj;
 	}
-	public Usuario update(Usuario obj) {
+	public Usuario update(Usuario newUsuario, Usuario obj) {
 		Usuario newObj = find(obj.getId());
-		updateData(newObj, obj);
+		updateData(newObj, newUsuario);
 		return repo.save(newObj);
 	}
 	public void delete(Integer id) {
