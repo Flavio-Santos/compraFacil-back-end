@@ -52,7 +52,8 @@ public class TesteService {
 		Localizacao loc1 = new Localizacao(null, "-13151351", "-12132132132", "Em frente ao Mc Donalds");
 		Localizacao loc2 = new Localizacao(null, "-48648648", "-6845684684", "Em frente ao Burguer King");
 		Localizacao loc3 = new Localizacao(null, "-18.909833", "-48.2612146", "Center Shopping");
-		localizacaoRepository.save(Arrays.asList(loc1, loc2, loc3));
+		Localizacao loc4 = new Localizacao(null, "-18.999125", "-49.5657846", "Uberlandia Shopping");
+		localizacaoRepository.save(Arrays.asList(loc1, loc2, loc3, loc4));
 		
 		Usuario usr1 = new Usuario(null, "santana", "santana@hotmail.com", "36378912377", pe.encode("afafoo"));
 		usr1.getTelefones().addAll(Arrays.asList("27363323", "88456521"));

@@ -1,10 +1,6 @@
 package com.compraFacil.services;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-
 import java.util.List;
-
-import javax.validation.constraints.Null;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -59,7 +55,9 @@ public class LocalizacaoService {
 
 	public Localizacao update(Localizacao newLoc, Localizacao obj) {
 		if (verifyLocation(newLoc)) {
-			throw new ObjectAlreadyExistsException("Localizacao já existe no banco de dados !, Tipo: " + Localizacao.class.getName());
+			if (newLoc.getDescricao() == obj.getDescricao()) {
+				throw new ObjectAlreadyExistsException("Localizacao já existe no banco de dados !, Tipo: " + Localizacao.class.getName());
+			}
 		}
 		
 		obj = find(obj.getId());
