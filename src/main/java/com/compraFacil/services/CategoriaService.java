@@ -5,12 +5,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.compraFacil.domain.Anuncio;
 import com.compraFacil.domain.Categoria;
 import com.compraFacil.dto.UsuarioDTO;
 import com.compraFacil.repositories.CategoriaRepository;
+import com.compraFacil.services.exceptions.DataIntegrityException;
 import com.compraFacil.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -51,5 +53,24 @@ public class CategoriaService {
 		cat.setId(null);
 		cat = repoCategoria.save(cat);
 		return cat;
+	}
+
+	public Categoria update(Categoria obj, Categoria objDTO) {
+		Categoria newObj = find(obj.getId());
+		updateData(newObj, objDTO);
+		return repoCategoria.save(newObj);
+	}
+	
+	private void updateData(Categoria newObj, Categoria obj) {
+		newObj.setNome(obj.getNome());
+	}
+
+	public void delete(Integer id) {
+		find(id);
+		try {
+			repoCategoria.delete(id);
+		}catch(DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir por que há anuncios relacionadas");
+		}
 	}
 }

@@ -4,8 +4,11 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.compraFacil.domain.Anuncio;
 import com.compraFacil.domain.Categoria;
+import com.compraFacil.dto.AnuncioDTO;
 import com.compraFacil.dto.CategoriaDTO;
 import com.compraFacil.dto.UsuarioDTO;
 import com.compraFacil.services.CategoriaService;
@@ -32,6 +37,7 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(catDto);
 	}
 
+	//@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> buscar(@RequestBody Categoria cat) {
 		cat = service.insert(cat);
@@ -39,6 +45,22 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).build();
 	}
 
+	//@PreAuthorize("hasAnyRole('ADMIN')")
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody Categoria objDTO, @PathVariable Integer id){
+		Categoria obj = service.find(objDTO.getId());
+		obj.setId(id);
+		service.update(obj, objDTO);
+		return ResponseEntity.noContent().build();
+	}
+	
+	//@PreAuthorize("hasAnyRole('ADMIN')")
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<?>> findAll() {
 		List<Categoria> list = service.findAll();

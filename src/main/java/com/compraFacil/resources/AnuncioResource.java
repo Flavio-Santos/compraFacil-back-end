@@ -39,7 +39,7 @@ public class AnuncioResource {
 		AnuncioDTO objDto = new AnuncioDTO(obj);
 		return ResponseEntity.ok().body(objDto);
 	}
-	
+
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody AnuncioNewDTO objDTO) {
 		Anuncio obj = service.insert(service.fromDTO(objDTO));
@@ -50,6 +50,7 @@ public class AnuncioResource {
 				.toUri();
 		return ResponseEntity.created(uri).build();
 	}
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody AnuncioDTO objDTO, @PathVariable Integer id){
 		Anuncio obj = service.fromDTO(objDTO);

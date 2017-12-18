@@ -64,13 +64,14 @@ public class AnuncioService {
 		obj.setDataCriacao(new Date());
 		//enderecoRepository.save(obj.getEnderecos());
 		return repoAnuncio.save(obj);
-		
 	}
+	
 	public Anuncio update(Anuncio obj) {
 		Anuncio newObj = find(obj.getId());
 		updateData(newObj, obj);
 		return repoAnuncio.save(newObj);
 	}
+	
 	public void delete(Integer id) {
 		find(id);
 		try {

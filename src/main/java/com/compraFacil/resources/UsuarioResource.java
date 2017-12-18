@@ -28,6 +28,7 @@ import com.compraFacil.services.UsuarioService;
 @RestController
 @RequestMapping(value="/usuarios")
 public class UsuarioResource {
+	
 	@Autowired
 	private UsuarioService service;
 	@Autowired
@@ -35,22 +36,23 @@ public class UsuarioResource {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Usuario> find(@PathVariable Integer id) {
-		
 		Usuario obj = service.find(id);
 		//List<Anuncio> list = AnunService.findAnunciosByVendedorId(id);
 		return ResponseEntity.ok().body(obj);
-	
 	}
+	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody UsuarioNewDTO objDTO) {
 		Usuario obj = service.fromDTO(objDTO);
 		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(obj.getId()).toUri();
-		
+		URI uri = ServletUriComponentsBuilder
+				.fromCurrentRequest()
+				.path("/{id}")
+				.buildAndExpand(obj.getId())
+				.toUri();
 		return ResponseEntity.created(uri).build();
-		
 	}
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody UsuarioDTO objDTO, @PathVariable Integer id){
 		Usuario obj = service.fromDTO(objDTO);
@@ -58,14 +60,15 @@ public class UsuarioResource {
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
+	
 	//Comentario pro front do flavio funcionar
 	//@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
-		
 	}
+	
 	//Comentario pro front do flavio funcionar
 	//@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.GET)
@@ -75,6 +78,7 @@ public class UsuarioResource {
 		return ResponseEntity.ok().body(listDTO);
 	
 	}
+	
 	@RequestMapping(value="/page", method = RequestMethod.GET)
 	public ResponseEntity <Page<UsuarioDTO>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 
@@ -84,6 +88,5 @@ public class UsuarioResource {
 		Page<Usuario> list = service.findPage(page, linesPerPage, orderBy, direction);
 		Page<UsuarioDTO> listDTO = list.map(obj -> new UsuarioDTO(obj));
 		return ResponseEntity.ok().body(listDTO);
-	
 	}
 }
