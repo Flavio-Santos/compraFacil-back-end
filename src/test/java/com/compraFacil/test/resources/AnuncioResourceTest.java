@@ -1,9 +1,5 @@
 package com.compraFacil.test.resources;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.json.JSONException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,13 +7,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.internal.matchers.ArrayEquals;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -25,20 +17,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.compraFacil.domain.Anuncio;
-import com.compraFacil.domain.Categoria;
-import com.compraFacil.domain.Usuario;
-import com.compraFacil.dto.AnuncioDTO;
-import com.compraFacil.dto.AnuncioNewDTO;
-import com.compraFacil.dto.UsuarioNewDTO;
 import com.compraFacil.resources.AnuncioResource;
 import com.compraFacil.services.AnuncioService;
-import com.compraFacil.services.TesteService;
-import com.compraFacil.services.UsuarioService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -55,10 +36,10 @@ public class AnuncioResourceTest {
     @InjectMocks
     private AnuncioResource anuncioResource;
 
-    @Autowired
+    /*@Autowired
     private TesteService tService;
     @Autowired
-    private UsuarioService usuarioService;
+    private UsuarioService usuarioService;*/
     
     @Before
     public void setUp() throws Exception {
@@ -109,6 +90,13 @@ public class AnuncioResourceTest {
 		JSONAssert.assertEquals(expected, actual, true);
 	}
 	
+	@Test
+	public void testDeleteAnuncio() {		
+		ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("/anuncios/1"),HttpMethod.DELETE, httpEntity, String.class);
+		
+		Assert.assertEquals("failure - expected status code to match", response.getStatusCode(), HttpStatus.BAD_REQUEST);
+	}
+
 	/*@Transactional
 	@Test
 	public void addCourse() {
