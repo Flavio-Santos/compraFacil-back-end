@@ -12,5 +12,8 @@ import com.compraFacil.domain.Anuncio;
 public interface AnuncioRepository extends JpaRepository<Anuncio, Integer>{
 
 	@Query(nativeQuery=true, value = "SELECT * FROM anuncio WHERE Vendido = 0")
-    List<Anuncio> FindAllNotSold();
+    List<Anuncio> findAllNotSold();
+	
+	@Query(nativeQuery=true, value = "SELECT * FROM anuncio WHERE vendedor_id = ?1")
+    List<Anuncio> findByUsuario(Integer id);
 }

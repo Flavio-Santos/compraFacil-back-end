@@ -53,17 +53,20 @@ public class UsuarioService {
 		
 		return obj;
 	}
+	
 	public Usuario insert(Usuario obj) {
 		obj.setId(null);
 		obj = repo.save(obj);
 		enderecoRepository.save(obj.getEnderecos());
 		return obj;
 	}
+	
 	public Usuario update(Usuario newUsuario, Usuario obj) {
 		Usuario newObj = find(obj.getId());
 		updateData(newObj, newUsuario);
 		return repo.save(newObj);
 	}
+	
 	public void delete(Integer id) {
 		find(id);
 		try {
@@ -72,16 +75,20 @@ public class UsuarioService {
 			throw new DataIntegrityException("Não é possível excluir por que há pedidos relacionadas");
 		}
 	}
+	
 	public List<Usuario> findAll(){
 		return repo.findAll();
 	}
+	
 	public Page<Usuario> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pageRequest = new PageRequest(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
+	
 	public Usuario fromDTO(UsuarioDTO objDto) {
 		return 	new Usuario(objDto.getId(), objDto.getNome(), objDto.getEmail(), null, null);
 	}
+	
 	public Usuario fromDTO(UsuarioNewDTO objDto) {
 		Usuario usr = new Usuario(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), pe.encode(objDto.getSenha()), objDto.getAvatar());
 		System.out.println(objDto.getAvatar());
@@ -98,10 +105,9 @@ public class UsuarioService {
 		//}
 		return usr;
 	}
+	
 	private void updateData(Usuario newObj, Usuario obj) {
 		newObj.setNome(obj.getNome());
 		newObj.setEmail(obj.getEmail());
 	}
-	
-
 }

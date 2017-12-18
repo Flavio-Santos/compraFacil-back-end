@@ -12,8 +12,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.compraFacil.domain.Anuncio;
-import com.compraFacil.domain.Endereco;
-import com.compraFacil.domain.Localizacao;
 import com.compraFacil.domain.Usuario;
 import com.compraFacil.dto.AnuncioDTO;
 import com.compraFacil.dto.AnuncioNewDTO;
@@ -26,8 +24,6 @@ public class AnuncioService {
 
 	@Autowired
 	private AnuncioRepository repoAnuncio;
-	@Autowired
-	private UsuarioService usuarioService;
 
 	public Anuncio find(Integer id) {
 		Anuncio anuncio = repoAnuncio.findOne(id);
@@ -41,7 +37,10 @@ public class AnuncioService {
 	
 	public Anuncio efetuaVenda(Anuncio obj, Usuario comprador) {
 		Anuncio anuncio = find(obj.getId());
-		anuncio.efetuaVenda(comprador);
+		//lançar exceção que não pode vender para ele mesmo
+		if (anuncio.getVendedor().getId() != comprador.getId()) {
+			anuncio.efetuaVenda(comprador);
+		}
 		return repoAnuncio.save(anuncio);
 	}
 	
@@ -82,7 +81,7 @@ public class AnuncioService {
 	}
 	
 	public List<Anuncio> findAll() {
-		return repoAnuncio.FindAllNotSold();
+		return repoAnuncio.findAllNotSold();
 	}
 
 	public List<Anuncio> buscarPorCategoria(Integer id) {
@@ -131,8 +130,14 @@ public class AnuncioService {
 	}
 	
 	private void updateData(Anuncio newObj, Anuncio obj) {
-		//newObj.setNome(obj.getNome());
-		//newObj.setEmail(obj.getEmail());
+		newObj.setNome(obj.getNome());
+		newObj.setDescricao(obj.getDescricao());
+		/*newObj.setImagens(obj.getImagens());
+		newObj.setTelefone(obj.getTelefone());
+		newObj.setLocalizacao(obj.getLocalizacao());
+		newObj.setPropriedades(obj.getPropriedades());
+		newObj.setValor(obj.getValor());
+		newObj.setValor(obj.getValor());*/
 	}
 
 	public List<Anuncio> findAnunciosByVendedorId(Integer id) {
@@ -144,5 +149,14 @@ public class AnuncioService {
 			}
 		}
 		return prodUsr;
+	}
+
+	public List<Anuncio> findByUsuario(Usuario user) {
+		List<Anuncio> listAuncios = null;
+		if (repoAnuncio.findByUsuario(user.getId()) != null) {
+			listAuncios = repoAnuncio.findByUsuario(user.getId());
+		}
+		
+		return listAuncios;
 	}
 }

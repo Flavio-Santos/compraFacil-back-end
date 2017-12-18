@@ -73,7 +73,7 @@ public class TesteService {
 		categoriaRepository.save(Arrays.asList(cat1, cat2, cat3));
 		
 		Anuncio anuncio1 = new Anuncio(null, 490.0, "Bicleta azul", "semi nova", null, new Date(), null, null, null, loc2, cat1);
-		Anuncio anuncio2 = new Anuncio(null, 7932.0, "CG", "125cc", null, new Date(), null, null, null, loc1, cat1);
+		Anuncio anuncio2 = new Anuncio(null, 7932.0, "CG", "125cc", null, new Date(), null, null, usr1, loc1, cat1);
 		//Anuncio anuncio4 = new Anuncio(id, valor,    nome, descricao, telefone, dataCriacao, dataFechamento, comprador, vendedor, localizacao, categoria);
 		Anuncio anuncio3 = new Anuncio(null, 500.0, "notebook i5 usado", "vendo urgente", null, new Date(), null, usr2, usr1, loc3, cat3);
 		anuncio3.getImagens().addAll(Arrays.asList("http://i.mlcdn.com.br/1500x1500/notebook-acer-aspire-f5-intel-core-i5-6-geracao8gb-1tb-led-15-6-34-windows-10-216838300.jpg", "https://a-static.mlcdn.com.br/1500x1500/notebook-acer-intel-celeron-quad-core-15-6-2-4ghz-windows-10-memoria-ram-4gb-hd-500gb-es1-533-c27u-acer/ldsmobile/5767/6eaba89ea9d94863a5eb6c9406d2e8e1.jpg"));
