@@ -27,23 +27,19 @@ public class AnuncioNewDTO implements Serializable {
 	private String descricao;
 	private String telefone;
 	
-	//Comentario pro front do flavio funcionar
-	//@NotEmpty(message="Preenchimento obrigatório")
+	@NotEmpty(message="Preenchimento obrigatório")
 	private Date dataCriacao;
 	private Date dataFechamento;
 	
-	//Comentario pro front do flavio funcionar
-	//@NotEmpty(message="Preenchimento obrigatório")
+	@NotEmpty(message="Preenchimento obrigatório")
 	private Usuario vendedor;
 	private Usuario comprador;
 	private Localizacao localizacao;
 	
-	//Comentario pro front do flavio funcionar
-	//@NotEmpty(message="Preenchimento obrigatório")
+	@NotEmpty(message="Preenchimento obrigatório")
 	private Categoria categoria;
 	
-	//Comentario pro front do flavio funcionar
-	//@NotEmpty(message="Preenchimento obrigatório")
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String imagem1;
 	private String imagem2;
 	private String imagem3;

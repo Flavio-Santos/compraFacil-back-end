@@ -12,6 +12,7 @@ import com.compraFacil.domain.Usuario;
 import com.compraFacil.dto.UsuarioNewDTO;
 import com.compraFacil.repositories.UsuarioRepository;
 import com.compraFacil.resources.exceptions.FieldMessage;
+import com.compraFacil.services.validation.utils.BR;
 
 public class UsuarioInsertValidator implements ConstraintValidator<UsuarioInsert, UsuarioNewDTO> {
 	
@@ -26,11 +27,10 @@ public class UsuarioInsertValidator implements ConstraintValidator<UsuarioInsert
 	public boolean isValid(UsuarioNewDTO objDto, ConstraintValidatorContext context) {
 		
 		List<FieldMessage> list = new ArrayList<>();
-		//Comentario pro front do flavio funcionar
-		/*
+		
 		if(objDto.getTipo().equals(!BR.isValidCPF(objDto.getCpfOuCnpj()))) {
 			list.add(new FieldMessage("cpfOuCnpj", "CPF inválido"));
-		}*/
+		}
 		
 		
 		Usuario aux = repo.findByEmail(objDto.getEmail());

@@ -11,10 +11,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.compraFacil.domain.Usuario;
+import com.compraFacil.domain.enums.Perfil;
 import com.compraFacil.dto.UsuarioDTO;
 import com.compraFacil.dto.UsuarioNewDTO;
 import com.compraFacil.repositories.EnderecoRepository;
 import com.compraFacil.repositories.UsuarioRepository;
+import com.compraFacil.security.UserSS;
+import com.compraFacil.services.exceptions.AuthorizationException;
 import com.compraFacil.services.exceptions.DataIntegrityException;
 import com.compraFacil.services.exceptions.ObjectNotFoundException;
 
@@ -31,13 +34,12 @@ public class UsuarioService {
 	private EnderecoRepository enderecoRepository;
 	
 	public Usuario find(Integer id) {
-		//Comentario pro front do flavio funcionar
-		/*
+		
 		UserSS user = UserService.authenticated();
 		if(user == null||!user.hasRole(Perfil.ADMIN)&&id.equals(user.getId())) {
 			throw new  AuthorizationException("Acesso Negado");
 		}
-		*/
+		
 		Usuario obj = repo.findOne(id);
 		
 		if (obj == null) {
